@@ -47,23 +47,6 @@ public class Player : MonoBehaviour
         {
             selectedCounter.Interact();
         }
-        inputVector = gameInput.GetMovementVectorNormalized();
-
-        moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
-
-        if (moveDir != Vector3.zero)
-        {
-            lastInteractDir = moveDir;
-        }
-
-        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
-        {
-            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
-            {
-                clearCounter.Interact();
-            }
-        }
-        
     }
 
     // Update is called once per frame
@@ -169,7 +152,6 @@ public class Player : MonoBehaviour
         {
             SetSelectedCounter(null);
         }
-        Debug.Log(selectedCounter);
     }
 
     private void SetSelectedCounter(ClearCounter selectedCounter)
