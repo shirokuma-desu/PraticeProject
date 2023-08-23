@@ -1,2 +1,2 @@
 # PraticeProject
- This is praticeproject for learning
+ this is practice project for learning
