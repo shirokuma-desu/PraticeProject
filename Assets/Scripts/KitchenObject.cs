@@ -27,8 +27,22 @@ public class KitchenObject : MonoBehaviour
             Debug.Log("counter already have a kitchenobj");
         }
         kitchenObjectParent.SetKitchenObject(this);
-
         transform.parent = kitchenObjectParent.GetKitchenObjectFollowTransform();
         transform.localPosition = Vector3.zero;
+    }
+
+    public void DestroySelf()
+    {
+        kitchenObjectParent.ClearKitchenObject() ;
+        Destroy(gameObject);
+    }
+
+    public static KitchenObject SpawnKitchenObject(KitchenObjectSO kitchenObjectSO,IKitchenObjectParent kitchenObjectParent)
+    {
+        Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab);
+        KitchenObject kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
+        kitchenObject.SetKitchenObjectParent(kitchenObjectParent);
+
+        return kitchenObject;
     }
 }
