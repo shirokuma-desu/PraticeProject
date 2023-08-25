@@ -1,11 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameInput : MonoBehaviour
 {
-
     public event EventHandler OnInteractAction;
 
     private Vector2 inputVector = Vector2.zero;
@@ -21,18 +18,16 @@ public class GameInput : MonoBehaviour
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        OnInteractAction?.Invoke(this,EventArgs.Empty);
+        OnInteractAction?.Invoke(this, EventArgs.Empty);
     }
 
-    void Start()
+    private void Start()
     {
-        
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
     }
 
     public Vector2 GetMovementVectorNormalized()
