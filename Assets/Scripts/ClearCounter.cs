@@ -26,6 +26,7 @@ public class ClearCounter : BaseCounter
             else
             {
                 //player is not carrying anything
+                GetKitchenObject().SetKitchenObjectParent(player);
             }
         }
     }
