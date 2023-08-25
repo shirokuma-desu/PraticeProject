@@ -11,6 +11,12 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
         Debug.Log("basecounter should not called");
     }
 
+
+    public virtual void InteractAlternate(Player player)
+    {
+        Debug.Log("basecounter method shouldn't called");
+    }
+
     public void ClearKitchenObject()
     {
         kitchenObject = null;
