@@ -42,6 +42,16 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     private void Start()
     {
         gameInput.OnInteractAction += GameInput_OnInteractAction;
+        gameInput.OnInteractActionAlternate += GameInput_OnInteractActionAlternate;
+    }
+
+    private void GameInput_OnInteractActionAlternate(object sender, EventArgs e)
+    {
+        if (selectedCounter != null)
+        {
+            selectedCounter.InteractAlternate(this);
+            Debug.Log("Event interact allernate called");
+        }
     }
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
@@ -77,7 +87,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
             Vector3 moveDirX = new Vector3(moveDir.x, 0, 0);
 
-            canMove = CapsuleRaycastDetect(moveDirX, moveDistance);
+            canMove = moveDir.x != 0 && CapsuleRaycastDetect(moveDirX, moveDistance);
 
             if (canMove)
             {
@@ -92,7 +102,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
                 //Attemp only Z movement
                 Vector3 moveDirZ = new Vector3(0, 0, moveDir.z);
 
-                canMove = CapsuleRaycastDetect(moveDirZ, moveDistance);
+                canMove = moveDir.z != 0 && CapsuleRaycastDetect(moveDirZ, moveDistance);
                 if (canMove)
                 {
                     //Can move only on the Z
