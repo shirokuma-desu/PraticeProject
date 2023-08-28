@@ -1,16 +1,17 @@
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class StoveCounter : BaseCounter,IHasProgress
+public class StoveCounter : BaseCounter, IHasProgress
 {
-
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
+
     public event EventHandler<OnStateChangedEventArgs> OnStateChanged;
+
     public class OnStateChangedEventArgs : EventArgs
     {
         public State state;
     }
+
     public enum State
     {
         Idle,
@@ -18,8 +19,6 @@ public class StoveCounter : BaseCounter,IHasProgress
         Fried,
         Burned,
     }
-
-  
 
     [SerializeField] private FryingRecipeSO[] fryingRecipeSOArray;
     [SerializeField] private BurningRecipeSO[] burningRecipeSOArray;
@@ -54,7 +53,7 @@ public class StoveCounter : BaseCounter,IHasProgress
                         GetKitchenObject().DestroySelf();
                         KitchenObject.SpawnKitchenObject(fryingRecipeSO.output, this);
                         Debug.Log("object fried!");
-                        
+
                         state = State.Fried;
                         burningTimer = 0f;
                         burningRecipeSO = GetBurningRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
@@ -129,6 +128,9 @@ public class StoveCounter : BaseCounter,IHasProgress
                 state = State.Idle;
 
                 OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = state });
+
+                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+                { progressNormalized = fryingTimer / fryingRecipeSO.fryingTimerMax });
             }
         }
     }
