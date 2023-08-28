@@ -1144,6 +1144,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 290ebc7fbd1c268438dad795b83207ef, type: 3}
+--- !u!1 &819216354 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2634284897441041827, guid: d0823b11b12b70945b5ecc4775a95312,
+    type: 3}
+  m_PrefabInstance: {fileID: 2020239681}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1593,6 +1599,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1619484501 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2634284897441041827, guid: d0823b11b12b70945b5ecc4775a95312,
+    type: 3}
+  m_PrefabInstance: {fileID: 2018341287}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1657239626
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1872,6 +1884,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1016279891}
     m_Modifications:
+    - target: {fileID: 1271881827480982668, guid: d0823b11b12b70945b5ecc4775a95312,
+        type: 3}
+      propertyPath: hasProgressObject
+      value: 
+      objectReference: {fileID: 1619484501}
     - target: {fileID: 1725034327876155271, guid: d0823b11b12b70945b5ecc4775a95312,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1937,19 +1954,19 @@ PrefabInstance:
         type: 3}
       propertyPath: cuttingRecipeSOArray.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 0fe5886fc3c8bd342a2265fa238f6c7f,
+      objectReference: {fileID: 11400000, guid: 2e2b057d12766524fa76b45022ccfae4,
         type: 2}
     - target: {fileID: 2571569915675159727, guid: d0823b11b12b70945b5ecc4775a95312,
         type: 3}
       propertyPath: cuttingRecipeSOArray.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: dd870d317e2ed354d8797dc3cca0ee95,
+      objectReference: {fileID: 11400000, guid: 49206d0069ef18449a0d24fd7298f847,
         type: 2}
     - target: {fileID: 2571569915675159727, guid: d0823b11b12b70945b5ecc4775a95312,
         type: 3}
       propertyPath: cuttingRecipeSOArray.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: dd61309cdef3f604aab695e2340d3dff,
+      objectReference: {fileID: 11400000, guid: 070e60c61ca8ecb47b2294650f0619a5,
         type: 2}
     - target: {fileID: 2634284897441041827, guid: d0823b11b12b70945b5ecc4775a95312,
         type: 3}
@@ -2064,6 +2081,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1016279891}
     m_Modifications:
+    - target: {fileID: 1271881827480982668, guid: d0823b11b12b70945b5ecc4775a95312,
+        type: 3}
+      propertyPath: hasProgressObject
+      value: 
+      objectReference: {fileID: 819216354}
     - target: {fileID: 1725034327876155271, guid: d0823b11b12b70945b5ecc4775a95312,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2129,19 +2151,19 @@ PrefabInstance:
         type: 3}
       propertyPath: cuttingRecipeSOArray.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 0fe5886fc3c8bd342a2265fa238f6c7f,
+      objectReference: {fileID: 11400000, guid: 2e2b057d12766524fa76b45022ccfae4,
         type: 2}
     - target: {fileID: 2571569915675159727, guid: d0823b11b12b70945b5ecc4775a95312,
         type: 3}
       propertyPath: cuttingRecipeSOArray.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: dd870d317e2ed354d8797dc3cca0ee95,
+      objectReference: {fileID: 11400000, guid: 49206d0069ef18449a0d24fd7298f847,
         type: 2}
     - target: {fileID: 2571569915675159727, guid: d0823b11b12b70945b5ecc4775a95312,
         type: 3}
       propertyPath: cuttingRecipeSOArray.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: dd61309cdef3f604aab695e2340d3dff,
+      objectReference: {fileID: 11400000, guid: 070e60c61ca8ecb47b2294650f0619a5,
         type: 2}
     - target: {fileID: 2634284897441041827, guid: d0823b11b12b70945b5ecc4775a95312,
         type: 3}
@@ -2151,7 +2173,7 @@ PrefabInstance:
     - target: {fileID: 6588985492853267058, guid: d0823b11b12b70945b5ecc4775a95312,
         type: 3}
       propertyPath: mode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

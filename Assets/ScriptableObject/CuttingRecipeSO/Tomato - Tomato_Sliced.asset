@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce69c7d93fedb2646928c3e2cf86a930, type: 3}
-  m_Name: Cheese - CheeseSlice
+  m_Name: Tomato - Tomato_Sliced
   m_EditorClassIdentifier: 
-  input: {fileID: 11400000, guid: abd7d138c47f10f4abd827219b7f98bb, type: 2}
-  output: {fileID: 11400000, guid: 4f1672413563e234eb13e7b341411b60, type: 2}
-  cuttingProgressMax: 4
+  input: {fileID: 11400000, guid: 6deecc9dbaca15240951ab91e1419da6, type: 2}
+  output: {fileID: 11400000, guid: c85bc41d33f66864db6734bcc81f91e9, type: 2}
+  cuttingProgressMax: 3
