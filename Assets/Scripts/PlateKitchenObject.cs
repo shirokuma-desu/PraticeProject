@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlateKitchenObject : KitchenObject
 {
-    public event EventHandler<OnIngredientAddedEventArgs> OnIngredintAdded;
+    public event EventHandler<OnIngredientAddedEventArgs> OnIngredientAdded;
 
     public class OnIngredientAddedEventArgs : EventArgs
     {
@@ -23,8 +23,12 @@ public class PlateKitchenObject : KitchenObject
 
     public bool TryAddIngredient(KitchenObjectSO kitchenObjectSO)
     {
+        if (!validKitchenObjectSOList.Contains(kitchenObjectSO))
+        {
+            return false;
+        }
 
-        if(kitchenObjectSOlist.Contains(kitchenObjectSO) || !validKitchenObjectSOList.Contains(kitchenObjectSO))
+        if(kitchenObjectSOlist.Contains(kitchenObjectSO))
         {
             //already contains this ingredient
             return false;
@@ -32,9 +36,14 @@ public class PlateKitchenObject : KitchenObject
         else
         {
             kitchenObjectSOlist.Add(kitchenObjectSO);
-            OnIngredintAdded?.Invoke(this, new OnIngredientAddedEventArgs { kitchenObjectSO = kitchenObjectSO });
+            OnIngredientAdded?.Invoke(this, new OnIngredientAddedEventArgs { kitchenObjectSO = kitchenObjectSO });
             return true;
         }
+    }
+
+    public List<KitchenObjectSO> GetKitchenObjectSOList()
+    {
+        return kitchenObjectSOlist;
     }
 }
  

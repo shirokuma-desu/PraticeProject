@@ -17,7 +17,7 @@ public class PlateCompleteVisual : MonoBehaviour
 
     private void Start()
     {
-        plateKitchenObject.OnIngredintAdded += PlateKitchenObject_OnIngredintAdded;
+        plateKitchenObject.OnIngredientAdded += PlateKitchenObject_OnIngredintAdded;
         foreach (KitchenObjectSO_GameObject kitchenObjectSOGameObject in kitchenObjectSO_GameObjects)
         {
                 kitchenObjectSOGameObject.gameObject.SetActive(false);
