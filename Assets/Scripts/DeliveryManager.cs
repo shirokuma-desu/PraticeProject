@@ -1,24 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DeliveryManager : MonoBehaviour
 {
-
-    public static DeliveryManager Insctance { get; private set; }
+    public event EventHandler OnRecipeSpawned;
+    public event EventHandler OnRecipeCompleted;
+    public static DeliveryManager Instance { get; private set; }
     
     [SerializeField] private RecipeSOList recipeSOList;
 
     private List<RecipeSO> wattingRecipeSOList;
     private float spawnRecipeTimer;
-    private float spawnRecipeTimerMax = 4f;
+    private float spawnRecipeTimerMax = 15f;
     private int wattingRecipesMax = 4;
     private bool ingredientFound;
     private bool plateContentMatchesRecipe;
 
     private void Awake()
     {
-          Insctance = this;
+          Instance = this;
           wattingRecipeSOList = new List<RecipeSO>();
     }
 
@@ -30,10 +32,10 @@ public class DeliveryManager : MonoBehaviour
             spawnRecipeTimer = spawnRecipeTimerMax;
             if(wattingRecipeSOList.Count < wattingRecipesMax)
             {
-                RecipeSO wattingRecipeSO = recipeSOList.recipeSOList[Random.Range(0, recipeSOList.recipeSOList.Count)];
+                RecipeSO wattingRecipeSO = recipeSOList.recipeSOList[UnityEngine.Random.Range(0, recipeSOList.recipeSOList.Count)];
                 Debug.Log(wattingRecipeSO.name);
                 wattingRecipeSOList.Add(wattingRecipeSO);
-                Debug.Log("Add Recipe to watting recipe so list");
+                OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
             }
 
         }
@@ -64,6 +66,7 @@ public class DeliveryManager : MonoBehaviour
                     }
                     if(!ingredientFound)
                     {
+                        
                         //ingredient not found on the plate
                         plateContentMatchesRecipe = false;
                         break;
@@ -71,12 +74,19 @@ public class DeliveryManager : MonoBehaviour
                 }
                 if (plateContentMatchesRecipe)
                 {
+                    Debug.Log("Recipe completed");
                     //Player delivered the correct recipe
-                    Debug.Log("player delivered the correct recipe");
                     wattingRecipeSOList.RemoveAt(i);
+                    OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
                     return;
                 }
             }
         }
+        Debug.Log("player not deliver correct recipe");
+    }
+
+    public List<RecipeSO> GetWattingRecipeSOList()
+    {
+        return wattingRecipeSOList;
     }
 }
