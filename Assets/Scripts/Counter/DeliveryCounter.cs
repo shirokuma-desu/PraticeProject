@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DeliveryCounter : BaseCounter
 {
+    
+
     public override void Interact(Player player)
     {
         if (player.HasKitchenObject())
@@ -11,6 +13,7 @@ public class DeliveryCounter : BaseCounter
             if(player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchentObject))
             {
                 //Only accept plates
+                DeliveryManager.Insctance.DeliverRecipe(plateKitchentObject);  
                 player.GetKitchenObject().DestroySelf();
             }
         }

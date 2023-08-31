@@ -83,7 +83,6 @@ public class StoveCounter : BaseCounter, IHasProgress
                     break;
             }
         }
-        Debug.Log(state);
     }
 
     public override void Interact(Player player)
