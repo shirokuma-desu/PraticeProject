@@ -15,8 +15,9 @@ public class DeliveryManager : MonoBehaviour
 
     private List<RecipeSO> wattingRecipeSOList;
     private float spawnRecipeTimer;
-    private float spawnRecipeTimerMax = 15f;
+    private float spawnRecipeTimerMax = 4f;
     private int wattingRecipesMax = 4;
+    private int successfulRecipesAmount;
     private bool ingredientFound;
     private bool plateContentMatchesRecipe;
 
@@ -78,6 +79,7 @@ public class DeliveryManager : MonoBehaviour
                 {
                     Debug.Log("Recipe completed");
                     //Player delivered the correct recipe
+                    successfulRecipesAmount++;
                     wattingRecipeSOList.RemoveAt(i);
                     OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
                     OnRecipeSuccess?.Invoke(this, EventArgs.Empty);
@@ -92,5 +94,10 @@ public class DeliveryManager : MonoBehaviour
     public List<RecipeSO> GetWattingRecipeSOList()
     {
         return wattingRecipeSOList;
+    }
+
+    public int GetSuccessfulRecipesAmount()
+    {
+        return successfulRecipesAmount;
     }
 }

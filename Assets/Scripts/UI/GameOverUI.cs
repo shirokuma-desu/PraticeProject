@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class GameStartCountDownUI : MonoBehaviour
+public class GameOverUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI countdownText;
+    [SerializeField] private TextMeshProUGUI recipesDeliveredText;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         GameManager.Instance.OnStateChanged += GameManager_OnStateChanged;
@@ -17,9 +15,10 @@ public class GameStartCountDownUI : MonoBehaviour
 
     private void GameManager_OnStateChanged(object sender, System.EventArgs e)
     {
-        if (GameManager.Instance.IsCountDownToStartActive())
+        if (GameManager.Instance.IsGameOver())
         {
             Show();
+            recipesDeliveredText.text = DeliveryManager.Instance.GetSuccessfulRecipesAmount().ToString();
         }
         else
         {
@@ -29,7 +28,7 @@ public class GameStartCountDownUI : MonoBehaviour
 
     private void Update()
     {
-        countdownText.text = Mathf.Ceil(GameManager.Instance.GetCountdownToStartTimer()).ToString("F0");
+        
     }
 
     private void Show()
