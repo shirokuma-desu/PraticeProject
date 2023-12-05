@@ -1,21 +1,41 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
+    public static GameInput instance { get; private set; }
+
     public event EventHandler OnInteractAction;
     public event EventHandler OnInteractActionAlternate;
+    public event EventHandler OnPauseAction;
 
     private Vector2 inputVector = Vector2.zero;
     private PlayerInputAction playerInputActions;
 
     // Start is called before the first frame update
     private void Awake()
-    {
+    {   
+        instance = this;
         playerInputActions = new PlayerInputAction();
         playerInputActions.Player.Enable();
         playerInputActions.Player.Interact.performed += Interact_performed;
         playerInputActions.Player.InteractAlternate.performed += InteractAlternate_performed;
+        playerInputActions.Player.Pause.performed += Pause_perfromed;
+    }
+
+    private void OnDestroy()
+    {
+        playerInputActions.Player.Interact.performed -= Interact_performed;
+        playerInputActions.Player.InteractAlternate.performed -= InteractAlternate_performed;
+        playerInputActions.Player.Pause.performed -= Pause_perfromed;
+
+        playerInputActions.Dispose();
+    }
+
+    private void Pause_perfromed(InputAction.CallbackContext context)
+    {
+        OnPauseAction?.Invoke(this,EventArgs.Empty);
     }
 
     private void InteractAlternate_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
