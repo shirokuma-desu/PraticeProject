@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CuttingCounter : BaseCounter,IHasProgress
@@ -6,7 +7,10 @@ public class CuttingCounter : BaseCounter,IHasProgress
     public static EventHandler OnAnyCut;
     public event EventHandler OnPlayerCutObject;
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
-
+    public static new void ResetStaticData()
+    {
+        OnAnyCut = null;
+    }
 
     [SerializeField] private CuttingRecipeSO[] cuttingRecipeSOArray;
 
