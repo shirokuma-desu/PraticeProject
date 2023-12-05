@@ -2,13 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.iOS;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
     public event EventHandler OnStateChanged;
-
+    public event EventHandler OnGamePaused;
+    public event EventHandler OnGameUnPaused;
     private enum State
     {
         WaitingToStart,
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour
     private float countdownToStartTimer = 3f;
     private float gamePlayingTimer;
     private float gamePlayingTimerMax = 60f;
+    private bool  isGamePaused = false;
 
     private void Awake()
     {
@@ -32,8 +35,15 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameInput.instance.OnPauseAction += GameInput_OnPauseAction;
     }
+
+    private void GameInput_OnPauseAction(object sender, EventArgs e)
+    {
+        togglePauseGame();
+    }
+
+ 
 
     // Update is called once per frame
     void Update()
@@ -95,5 +105,20 @@ public class GameManager : MonoBehaviour
     public float GetGamePlayingTimerNormalized()
     {
         return gamePlayingTimer / gamePlayingTimerMax;
+    }
+
+    public void togglePauseGame()
+    {
+        isGamePaused = !isGamePaused;
+        if (isGamePaused)
+        {
+            Time.timeScale = 0f;
+            OnGamePaused?.Invoke(this, EventArgs.Empty);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            OnGameUnPaused?.Invoke(this, EventArgs.Empty);
+        }
     }
 }
