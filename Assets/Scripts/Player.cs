@@ -98,7 +98,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
             Vector3 moveDirX = new Vector3(moveDir.x, 0, 0);
 
-            canMove = moveDir.x != 0 && CapsuleRaycastDetect(moveDirX, moveDistance);
+            canMove = (moveDir.x < .5f || moveDir.x > .5f)  && CapsuleRaycastDetect(moveDirX, moveDistance);
 
             if (canMove)
             {
@@ -113,7 +113,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
                 //Attemp only Z movement
                 Vector3 moveDirZ = new Vector3(0, 0, moveDir.z);
 
-                canMove = moveDir.z != 0 && CapsuleRaycastDetect(moveDirZ, moveDistance);
+                canMove = (moveDir.z < .5f || moveDir.z > .5f) && CapsuleRaycastDetect(moveDirZ, moveDistance);
                 if (canMove)
                 {
                     //Can move only on the Z
